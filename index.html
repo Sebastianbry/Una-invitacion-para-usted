@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorpresa ❤️</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #d6336c;
+    }
+
+    button {
+      background: #d6336c;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #ad2957;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card" id="app">
+  <!-- CONTENUTO DINAMICO -->
+</div>
+
+<script>
+  const app = document.getElementById("app");
+
+  const questions = [
+    "Ti ricordi la nostra birra insieme?",
+    "Secondo te che artista o genere di musica mi fa impazzire?",
+    "Se dovessi scegliere un luogo di Roma, quale sarebbe?",
+    "Se potessi partire ora, dove ti piacerebbe andare?",
+    "Preferisci una serata tranquilla o un'avventura?",
+    "Dolce o salato?",
+    "Mare o montagna?",
+    "Film o serie TV?",
+    "Candele o luci soffuse?",
+    "Sei pronta a scoprire tutto? ✨"
+  ];
+
+  let index = 0;
+
+  function showQuestion() {
+    app.innerHTML = `
+      <h1>Ho una sorpresa per te 💕</h1>
+      <p>${questions[index]}</p>
+      <button onclick="next()">Rispondo!</button>
+    `;
+  }
+
+  function next() {
+    index++;
+    if (index < questions.length) {
+      showQuestion();
+    } else {
+      showReveal();
+    }
+  }
+
+  function showReveal() {
+    app.innerHTML = `
+      <h1>Sorpresa! 🎁</h1>
+      <img src="sorpresa.jpeg" alt="Sorpresa">
+      <button onclick="finalQuestion()">Continua ➡️</button>
+    `;
+  }
+
+  function finalQuestion() {
+    app.innerHTML = `
+      <h1>Vuoi cenare insieme a me questo sabato? 💖</h1>
+      <button onclick="yes()">SÌ 💘</button>
+      <button onclick="no()">NO 😢</button>
+    `;
+  }
+
+  function yes() {
+    app.innerHTML = `
+      <h1>Yeeee! 🎉💖</h1>
+      <p>Scrivi a Sebastian per ulteriori informazioni 😘</p>
+      <img src="gatto_si.gif">
+      <button onclick="restart()">Chiudi</button>
+    `;
+  }
+
+  function no() {
+    app.innerHTML = `
+      <p>😿 Daiii, ripensaci…</p>
+      <img src="gatto.gif">
+      <button onclick="finalQuestion()">Torna alla domanda</button>
+    `;
+  }
+
+  function restart() {
+    index = 0;
+    showQuestion();
+  }
+
+  // AVVIO SICURO
+  showQuestion();
+</script>
+
+</body>
+</html>
